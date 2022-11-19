@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import ChatBot from 'react-simple-chatbot'
 import { useLocation } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 
 
 export default function InterviewPage() {
@@ -52,8 +53,9 @@ export default function InterviewPage() {
     return (
         <div>
 
-            <h1>Interview Page {id} for {job} at {company}</h1>
-
+            <Typography variant="h6" style={{ textAlign: 'center' }}>
+                <h1>{job} at {company}</h1>
+            </Typography>
             <ChatBot
                 handleEnd={handleEnd}
                 steps={conSteps}
