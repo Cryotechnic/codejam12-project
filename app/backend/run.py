@@ -1,7 +1,8 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, json
 import openai
 from flask_cors import CORS
-
+# import os
+from pathlib import Path
 
 openai.api_key = "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"
 app = Flask(__name__)
@@ -39,3 +40,9 @@ def generate_response():
     # delete any null or empty strings
     response_ls = [x for x in response_ls if x]
     return response_ls
+
+@app.route('/job_data', methods=['GET'])
+def get_job_data():
+    SITE_ROOT = Path("./templates/data.json")
+    data = json.load(open(SITE_ROOT))
+    return data
