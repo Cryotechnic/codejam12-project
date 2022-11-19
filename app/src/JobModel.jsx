@@ -1,14 +1,15 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import "./styles/JobModel.css"
 
 export default function JobModel(props) {
-  const location = useLocation();
-  const data = location.state.data
   return (
-    <div>
-        <p>{data.id}</p>
-        <p>{data.job}</p>
-        <p>{data.company}</p>
+    <div className = "popup-box">
+      <div className = "box">
+      <span className="close-icon" onClick={props.handleClose}>x</span>
+        <p>{props.data.id}</p>
+        <p>{props.data.job}</p>
+        <p>{props.data.company}</p>
+      </div>
     </div>
   )
 }
