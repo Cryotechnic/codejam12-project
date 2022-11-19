@@ -1,6 +1,6 @@
 import React from "react";
 import Landing from "./Landing";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import InterviewPage from "./InterviewPage";
 import background from "./styles/cool-background.png"
 

@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/button';
 import { spacing } from '@mui/system';
-
+import {Link} from 'react-router-dom';
 
 const resLink = 'http://localhost:5000/job_data';
 async function getJobData() {
@@ -91,7 +91,11 @@ export default function Landing() {
                   <TableCell align="center">{row.company}</TableCell>
                   <TableCell align="center">&#10240;</TableCell>
                   
-                  <TableCell align="center"><Button variant="contained">Apply</Button></TableCell>
+                  <TableCell align="center">        <Link style={{ textDecoration: 'none'}} to="/interview" state={{
+            id: row.id,
+            job: row.title,
+            company: row.company
+        }} ><Button variant="contained">Apply</Button></Link></TableCell>
                   <TableCell align="center"><Button variant="contained">Details</Button></TableCell>
                   <TableCell align="center">&#10240;</TableCell>
                   
