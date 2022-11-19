@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import Job from './Job'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,14 +6,25 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/button';
-import { spacing } from '@mui/system';
+import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom';
 import JobModel from './JobModel';
 
 const resLink = 'http://localhost:5000/job_data';
 async function getJobData() {
   const response = await fetch(resLink, {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+  })
+  const data = await response.json();
+  return data;
+}
+
+const genResLink = 'http://localhost:5000/generate_response';
+async function getResData() {
+  const response = await fetch(genResLink, {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
@@ -33,7 +43,8 @@ export default function Landing() {
     console.log("panchod")
   }
 
-  const [items, setItems] = useState([])
+    const [items, setItems] = useState([])
+    const [resItems, setResItems] = useState([])
 
   useEffect(() => {
     // React advises to declare the async function directly inside useEffect
@@ -49,6 +60,21 @@ export default function Landing() {
         getToken();
     }
   }, []);
+
+    useEffect(() => {
+        // React advises to declare the async function directly inside useEffect
+        async function getToken() {
+            const data = await getResData()
+            console.log(data)
+            setResItems(data);
+        };
+
+        // You need to restrict it at some point
+        // This is just dummy code and should be replaced by actual
+        if (resItems.length == 0) {
+            getToken();
+        }
+    }, []);
 
   function createData(id, title, company) {
     return { id, title, company };
@@ -99,11 +125,16 @@ export default function Landing() {
                   <TableCell align="center">{row.company}</TableCell>
                   <TableCell align="center">&#10240;</TableCell>
                   
-                  <TableCell align="center">        <Link style={{ textDecoration: 'none'}} to="/interview" state={{
-            id: row.id,
-            job: row.title,
-            company: row.company
-        }} ><Button variant="contained">Apply</Button></Link></TableCell>
+                  <TableCell align="center">        
+                  
+                        <Link style={{ textDecoration: 'none'}} to="/interview" state={{
+                            id: row.id,
+                            job: row.title,
+                            company: row.company,
+                            data: resItems
+                        }} ><Button variant="contained">Apply</Button>
+                        </Link>
+                    </TableCell>
                   <TableCell align="center"><Button variant="contained" onClick={togglePopup}>Details</Button>
         {isOpen && <JobModel
           data = {JSON.parse(JSON.stringify(items[rows.indexOf(row)]))}

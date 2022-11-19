@@ -1,32 +1,7 @@
 import React, {useState} from 'react';
 import ChatBot from 'react-simple-chatbot'
 import { useLocation } from 'react-router-dom';
-import { script } from "./chatbot";
-import { stepifyScript } from "./utils";
 
-// const originalData = [
-//     "What experience do you have with C++?",
-//     "What are some of the challenges you have faced with C++ programming?",
-//     "What is your experience with object-oriented programming in C++?",
-//     "What do you know about using templates in C++?",
-//     "What libraries or frameworks have you used in your C++ projects?",
-//     "What is your experience with algorithms and data structures in C++?",
-//     "What are some of the design patterns that you are familiar with?",
-//     "What do you think makes C++ a powerful tool for software engineering?"
-// ]
-  
-
-// const generateRes = 'http://localhost:5000/generate_response';
-// async function getDataFromBackend() {
-//     // require cors
-//     const response = await fetch(generateRes, {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//     });
-//     return await response.json();
-// }
 
 export default function InterviewPage() {
     const location = useLocation();
@@ -42,23 +17,47 @@ export default function InterviewPage() {
     const conSteps = [];
     let ctr = 0;
 
+    console.log(data);
+    // construct the steps by iterating through the data, and adding the questions, and every second question, the answer
+    for (let i = 0; i < data.length; i++) {
+        //if we are at the last question, we need to add the end step
+        if (i === data.length - 1) {
+            conSteps.push({
+                id: ctr.toString(),
+                message: 'Thanks! Your answers have been submitted.',
+                end: true,
+            });
+        }
+        //if we are at a question, we need to add the question and the answer
+        else {
+            conSteps.push({
+                id: ctr.toString(),
+                message: data[i],
+                trigger: (ctr + 1).toString(),
+            });
+            ctr++;
+            conSteps.push({
+                id: ctr.toString(),
+                user: true,
+                trigger: (ctr + 1).toString(),
+            });
+            ctr++;
+        }
+    }
+
+    conSteps.map((e) => console.log(e));
+
+
+
     return (
         <div>
 
             <h1>Interview Page {id} for {job} at {company}</h1>
-            {/* <button onClick={() => {
-                getDataFromBackend()
-                .then((data) => {
-                    data.map((item) => {
-                        console.log(item);
-                    });
-                    setData(data);
-                });
-            }} >Trigger</button> */}
-            {<p>{data}</p>}
+
             <ChatBot
                 handleEnd={handleEnd}
                 steps={conSteps}
+                style={{ width: '90vw', height: 'auto', marginLeft: '5vw', marginTop: '5vh' }}
             />
 
         </div>
