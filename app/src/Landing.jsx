@@ -1,7 +1,23 @@
 import React from 'react';
 import Job from './Job'
 
-let items = [{job: "Programmer", id:1, company: "Google"}, {job: "Gamer", id:2, company: "Ubisoft"}, {job: "Webber", id:3, company: "Marvel"}];
+let items = [
+    {
+        job: "Programmer", 
+        id:1, 
+        company: "Google"
+    }, 
+    {
+        job: "Gamer", 
+        id:2, 
+        company: "Ubisoft"
+    }, 
+    {
+        job: "Webber", 
+        id:3, 
+        company: "Marvel"
+    }
+];
 
 export default function Landing() {
   return (

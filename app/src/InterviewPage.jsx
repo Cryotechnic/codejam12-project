@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 // import ChatBot from 'react-simple-chatbot';
+import { useLocation } from 'react-router-dom';
 
 const generateRes = 'http://localhost:5000/generate_response';
 async function getDataFromBackend() {
@@ -15,12 +16,17 @@ async function getDataFromBackend() {
 }
 
 export default function InterviewPage() {
+    const location = useLocation();
+    const id = location.state.id;
+    const job = location.state.job;
+    const company = location.state.company;
 
     const [data, setData] = useState(null);
 
     return (
         <div>
-            <h1>Interview Page</h1>
+
+            <h1>Interview Page {id} for {job} at {company}</h1>
             <button onClick={() => {
                 
                 getDataFromBackend()
