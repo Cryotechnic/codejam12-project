@@ -1,16 +1,15 @@
-import './styles/App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./Landing";
 
+export default function App() {
 
-const jobData = [{title: "asdgjkasdf", id:7, company: "hdsghdsfh"}, {title: "fjjdhfjdsadnsadghsdf", id:8, company: "fodsjgghdsfh"}, {title: "dhfssjdfhdljkkjsgdh", id:9, company: "hfjdfhjghdsfh"}, {title: "hdsgusdghljkkjsgdh", id:10, company: "hfdjhhdsfh"}]
-
-function App() {
   return (
-    <div className="App">
-      <table>
-          <th>Jobs</th>
-      </table>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />}>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
