@@ -14,6 +14,9 @@ export default function Job(props) {
             job: props.data.job,
             company: props.data.company
         }} ><button>Apply</button></Link>
+        <Link to="/jobmodel" state={{
+            data: JSON.parse(JSON.stringify(props.data))
+        }} ><button>Details</button></Link>
         {/* <Routes>
                 <Route path="/interview" element={<InterviewPage/>}/>
         </Routes> */}
