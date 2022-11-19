@@ -1,9 +1,11 @@
 from flask import Flask, render_template, redirect, url_for
 import openai
+from flask_cors import CORS
 
 
 openai.api_key = "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"
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def index():
@@ -34,4 +36,6 @@ def generate_response():
     for response in response_ls:
         print(f"response: {response}")
     # return render_template('index.html', response=response_ls)
+    # delete any null or empty strings
+    response_ls = [x for x in response_ls if x]
     return response_ls
