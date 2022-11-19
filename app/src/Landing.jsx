@@ -1,5 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import Job from './Job'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/button';
+import { spacing } from '@mui/system';
+
 
 const resLink = 'http://localhost:5000/job_data';
 async function getJobData() {
@@ -32,13 +42,64 @@ export default function Landing() {
     }
   }, []);
 
+  function createData(id, title, company) {
+    return { id, title, company };
+  }
 
+  // actual data
+  const rows = [
+    // createData('Value', 159, 6.0)
+    // createData()
+  ]
 
-  return (
-    <div>
-        {items.map((obj, index) => {
-          return <div key={index}> <Job data={obj}/> </div>
-        })}
-    </div>
-  );
-}
+  items.forEach((elem) => {
+    rows.push(createData(elem.job_id, elem.job_title, elem.job_company))
+  })
+
+  // return (
+  //   <div>
+  //       {items.map((obj, index) => {
+  //         return <div key={index}> <Job data={obj}/> </div>
+  //       })}
+  //   </div>
+  // );
+
+    return (
+      <div>
+        <h1 style={{textAlign: "center"}}>JobSmart</h1>
+        <TableContainer sx={{mx:'auto', width: '52%'}} component={Paper} style={{borderRadius: 12.5}}>
+          <Table sx={{minWidth: 650, width: '52%'}} size="small" aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Job ID</TableCell>
+                <TableCell align="center">Job Title</TableCell>
+                <TableCell align="center">Job Company</TableCell>
+                <TableCell align="center">&#10240;</TableCell>
+                <TableCell align="center">&#10240;</TableCell>
+                <TableCell align="center">Actions</TableCell>
+                <TableCell align="center">&#10240;</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow
+                  key={row.name}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell align="center">{row.id}</TableCell>
+                  <TableCell align="center">{row.title}</TableCell>
+                  <TableCell align="center">{row.company}</TableCell>
+                  <TableCell align="center">&#10240;</TableCell>
+                  
+                  <TableCell align="center"><Button variant="contained">Apply</Button></TableCell>
+                  <TableCell align="center"><Button variant="contained">Details</Button></TableCell>
+                  <TableCell align="center">&#10240;</TableCell>
+                  
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
+  }
