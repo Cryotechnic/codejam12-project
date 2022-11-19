@@ -116,7 +116,7 @@ export default function Landing() {
       <div>
         <h1 style={{textAlign: "center"}}>JobSmart</h1>
         <TableContainer sx={{mx:'auto', width: '52%'}} component={Paper} style={{borderRadius: 12.5}}>
-          <Table sx={{minWidth: 650, width: '52%'}} size="small" aria-label="simple table">
+          <Table sx={{minWidth: 650, width: '100%'}} size="small" aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell align="center">Job ID</TableCell>
