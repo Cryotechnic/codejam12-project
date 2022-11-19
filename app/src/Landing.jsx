@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/button';
 import { spacing } from '@mui/system';
 import {Link} from 'react-router-dom';
+import JobModel from './JobModel';
 
 const resLink = 'http://localhost:5000/job_data';
 async function getJobData() {
@@ -24,6 +25,13 @@ async function getJobData() {
 }
 
 export default function Landing() {
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+    console.log("panchod")
+  }
 
   const [items, setItems] = useState([])
 
@@ -96,7 +104,11 @@ export default function Landing() {
             job: row.title,
             company: row.company
         }} ><Button variant="contained">Apply</Button></Link></TableCell>
-                  <TableCell align="center"><Button variant="contained">Details</Button></TableCell>
+                  <TableCell align="center"><Button variant="contained" onClick={togglePopup}>Details</Button>
+        {isOpen && <JobModel
+          data = {JSON.parse(JSON.stringify(items[rows.indexOf(row)]))}
+          handleClose={togglePopup}
+        />}</TableCell>
                   <TableCell align="center">&#10240;</TableCell>
                   
                 </TableRow>
