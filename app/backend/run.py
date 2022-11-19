@@ -8,6 +8,13 @@ openai.api_key = "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"
 app = Flask(__name__)
 CORS(app)
 
+def local_job_data():
+    SITE_ROOT = Path("./templates/data.json")
+    data = json.load(open(SITE_ROOT))
+    return data
+
+data = local_job_data()
+
 @app.route('/')
 def index():
     return "Hello World"
@@ -43,6 +50,4 @@ def generate_response():
 
 @app.route('/job_data', methods=['GET'])
 def get_job_data():
-    SITE_ROOT = Path("./templates/data.json")
-    data = json.load(open(SITE_ROOT))
     return data

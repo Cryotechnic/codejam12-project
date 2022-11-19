@@ -9,6 +9,8 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom';
 import JobModel from './JobModel';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 
 const resLink = 'http://localhost:5000/job_data';
 async function getJobData() {
@@ -34,17 +36,28 @@ async function getResData() {
   return data;
 }
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 export default function Landing() {
 
-  const [isOpen, setIsOpen] = useState(false)
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-    console.log("panchod")
-  }
+  const [modalData, setModalData] = useState({"job_skills":[]});
 
-    const [items, setItems] = useState([])
-    const [resItems, setResItems] = useState([])
+  const [items, setItems] = useState([])
+  const [resItems, setResItems] = useState([])
 
   useEffect(() => {
     // React advises to declare the async function directly inside useEffect
@@ -79,6 +92,7 @@ export default function Landing() {
   function createData(id, title, company) {
     return { id, title, company };
   }
+
 
   // actual data
   const rows = [
@@ -115,7 +129,8 @@ export default function Landing() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {rows.map((row, key) => { 
+                return(
                 <TableRow
                   key={row.name}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -135,18 +150,38 @@ export default function Landing() {
                         }} ><Button variant="contained">Apply</Button>
                         </Link>
                     </TableCell>
-                  <TableCell align="center"><Button variant="contained" onClick={togglePopup}>Details</Button>
-        {isOpen && <JobModel
-          data = {JSON.parse(JSON.stringify(items[rows.indexOf(row)]))}
-          handleClose={togglePopup}
-        />}</TableCell>
+                  <TableCell align="center"><Button variant="contained" key={key} onClick={event => {
+                    handleOpen()
+                    setModalData(JSON.parse(JSON.stringify(items[key])))
+                    }}>Details</Button>
+                  </TableCell>
                   <TableCell align="center">&#10240;</TableCell>
                   
                 </TableRow>
-              ))}
+              )})}
             </TableBody>
           </Table>
         </TableContainer>
+        <Modal
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-descript"  
+                    >
+                      <Box sx={style}>
+                        <p><b>Job ID: </b>{modalData.job_id}</p>
+                        <p><b>Job Title: </b>{modalData.job_title}</p>
+                        <p><b>Company: </b>{modalData.job_company}</p>
+                        <p><b>Job Description: </b>{modalData.job_description}</p>
+                        <p><b>Job Skills: </b></p>
+                        <ul>
+                          {modalData.job_skills.map((obj, index) => {
+                            return <li key={index}> {obj} </li>
+                          })}
+                        </ul>
+                      </Box>
+
+                    </Modal>
       </div>
     );
   }
