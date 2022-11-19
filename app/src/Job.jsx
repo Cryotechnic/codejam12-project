@@ -14,14 +14,14 @@ const Job = props => {
 
   return (
       <div>
-        <p>{props.data.id}</p>
-        <p>{props.data.job}</p>
-        <p>{props.data.company}</p>
+        <p>{props.data.job_id}</p>
+        <p>{props.data.job_title}</p>
+        <p>{props.data.job_company}</p>
 
         <Link to="/interview" state={{
-            id: props.data.id,
-            job: props.data.job,
-            company: props.data.company
+            id: props.data.job_id,
+            job: props.data.job_title,
+            company: props.data.job_company
         }} ><button>Apply</button></Link>
         <input
           type="button"

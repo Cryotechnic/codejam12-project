@@ -6,9 +6,9 @@ export default function JobModel(props) {
     <div className = "popup-box">
       <div className = "box">
       <span className="close-icon" onClick={props.handleClose}>x</span>
-        <p>{props.data.id}</p>
-        <p>{props.data.job}</p>
-        <p>{props.data.company}</p>
+        <p>{props.data.job_id}</p>
+        <p>{props.data.job_title}</p>
+        <p>{props.data.job_company}</p>
       </div>
     </div>
   )
