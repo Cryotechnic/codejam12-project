@@ -14,7 +14,20 @@
             "Exceptional problem solving skills",
             "Experience with agile or similar methodologies a plus"
         ],
-        "openai_query": ""
+        "keywords": [
+            "Python", 
+            "Software development", 
+            "Software design", 
+            "Software frameworks", 
+            "Agile methodologies", 
+            "Analytical skills", 
+            "Problem solving skills", 
+            "Communication skills", 
+            "Flask", 
+            "Django", 
+            "Front-end", 
+            "Back-end"
+        ]
     },
     {
         "job_id": "2",
@@ -28,7 +41,19 @@
             "Ability to build robust and well-tested software systems",
             "Strong analytical and problem-solving skills"
         ],
-        "openai_query": ""
+        "keywords": [
+            "Java", 
+            "Object-oriented design",
+            "Database",
+            "System performance tuning",
+            "HTTP",
+            "DNS",
+            "TCP/IP",
+            "Networking",
+            "Software systems",
+            "Analytical skills",
+            "Problem solving skills"
+        ]
     },
     {
         "job_id": "3",
@@ -44,7 +69,18 @@
             "Self-starter with a passion for technology.",
             "Willing to relocate."
         ],
-        "openai_query": ""
+        "keywords": [
+            "MongoDB",
+            "Database Administration",
+            "Java",
+            "Python",
+            "Node.js",
+            "Problem solving skills",
+            "Customer service skills",
+            "Cloud database",
+            "Amazon AWS",
+            "Google Cloud Platform"
+        ]
     },
     {
         "job_id": "4",
@@ -57,7 +93,17 @@
             "Experience with software design or user experience",
             "Familiarity with common graphic design software (Adobe Photoshop, Inkscape, GIMP, etc.)"
         ],
-        "openai_query": ""
+        "keywords": [
+            "Graphic design",
+            "Software design",
+            "User experience",
+            "Adobe Photoshop",
+            "Inkscape",
+            "GIMP",
+            "C++",
+            "Java",
+            "Python"
+        ]
     },
     {
         "job_id": "5",
@@ -67,7 +113,17 @@
         "job_skills": [
             "As a web developer at WhiteWave Systems, you will be part of a team that is responsible for developing and updating our website and client software. The position is full-time and requires a degree in computer science or related field. If you are interested in this opportunity, please send your resume and cover letter to us and we will contact you to discuss further."
         ],
-        "openai_query": ""
+        "keywords": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "jQuery",
+            "Web development",
+            "Software development",
+            "Computer science",
+            "Cover letter",
+            "Resume"
+        ]
     },
     {
         "job_id": "6",
@@ -83,7 +139,19 @@
             "Trace and analyze intrusion incidents",
             "Develop and implement countermeasures to protect company systems"
         ],
-        "openai_query": ""
+        "keywords": [
+            "Cyber security",
+            "Malicious software",
+            "Cyber attacks",
+            "Programming languages",
+            "Security concepts",
+            "Problem solving skills",
+            "Communication skills",
+            "Penetration tests",
+            "Vulnerability scans",
+            "Intrusion incidents",
+            "Countermeasures"
+        ]
     },
     {
         "job_id": "7",
@@ -98,7 +166,18 @@
             "- Expertise in trouble shooting and resolving system issues",
             "- Ability to work independently"
         ],
-        "openai_query": ""
+        "keywords": [
+            "Linux",
+            "System administration",
+            "Network administration",
+            "Security",
+            "Troubleshooting",
+            "System issues",
+            "C",
+            "Bash",
+            "Python",
+            "Problem solving skills"
+        ]
     },
     {
         "job_id": "8",
@@ -111,6 +190,18 @@
             "Experience with automation tools (e.g., Puppet, Chef, Ansible)",
             "Experience with code quality tools (e.g., SonarQube, Apache JIRA)"
         ],
-        "openai_query": ""
+        "keywords": [
+            "DevOps",
+            "Programming languages",
+            "Distributed systems",
+            "Deployment tools",
+            "Automation tools",
+            "Code quality tools",
+            "Puppet",
+            "Chef",
+            "Ansible",
+            "SonarQube",
+            "Apache JIRA"
+        ]
     }]
 }
