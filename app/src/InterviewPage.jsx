@@ -103,7 +103,7 @@ export default function InterviewPage() {
     finalScript.push(
         {
             id: (data.length*2).toString(),
-            message: "Thank you for your time!",
+            message: "Thank you for your time! Please stay on this page as we finish processing your application! You will be redirected shortly.",
             end: true,
         }
     )
