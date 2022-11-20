@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Landing from "./Landing";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import InterviewPage from "./InterviewPage";
+import background from "./styles/cool-background.png"
 
-function App() {
+export default function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ 
+      // backgroundImage: `url("https://via.placeholder.com/500")`,
+      backgroundImage: `url(${background})`,
+      height: "100%"
+    }}>
+      <BrowserRouter>
+        <Routes>
+              <Route path="/" element={<Landing/>}/>
+              <Route path="/interview" element={<InterviewPage />}/>
+              <Route path="/*"/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
-
-export default App;

@@ -1,0 +1,207 @@
+{
+    "jobs":[  
+    {
+        "job_id": "1",
+        "job_title": "Python Software Engineer",
+        "job_company": "CareerFoundry",
+        "job_description": "The Python Software Engineer will be responsible for developing and maintaining web applications using the most current programming languages and frameworks. The successful candidate will have experience in Flask and Django Framework. Candidates will be expected to program both the front-end and back-end of web applications.",
+        "job_skills": [
+            "Experience with Python programming language",
+            "Strong interest in software development and design",
+            "Proven experience with various software development frameworks",
+            "Strong analytical skills",
+            "Excellent written and verbal communication skills",
+            "Exceptional problem solving skills",
+            "Experience with agile or similar methodologies a plus"
+        ],
+        "keywords": [
+            "Python", 
+            "Software development", 
+            "Software design", 
+            "Software frameworks", 
+            "Agile methodologies", 
+            "Analytical skills", 
+            "Problem solving skills", 
+            "Communication skills", 
+            "Flask", 
+            "Django", 
+            "Front-end", 
+            "Back-end"
+        ]
+    },
+    {
+        "job_id": "2",
+        "job_title": "Java Software Engineer",
+        "job_company": "Oracle",
+        "job_description": "The Software Engineer will be responsible for developing and maintaining the software systems within the company. The engineer will be required to have a deep knowledge of Java programming, as well as strong skills in object-oriented design, database querying, and system performance tuning.",
+        "job_skills": [
+            "Proven experience in Java programming",
+            "Strong skills in object-oriented design, database querying, and system performance tuning",
+            "Thorough understanding of the principles of HTTP, DNS, and TCP/IP networking",
+            "Ability to build robust and well-tested software systems",
+            "Strong analytical and problem-solving skills"
+        ],
+        "keywords": [
+            "Java", 
+            "Object-oriented design",
+            "Database",
+            "System performance tuning",
+            "HTTP",
+            "DNS",
+            "TCP/IP",
+            "Networking",
+            "Software systems",
+            "Analytical skills",
+            "Problem solving skills"
+        ]
+    },
+    {
+        "job_id": "3",
+        "job_title": "MongoDB Database Administrator",
+        "job_company": "Netcentric Solutions",
+        "job_description": "",
+        "job_skills": [
+            "Strong programming skills in at least one language, e.g. Java, Python, Node.js.",
+            "Excellent problem-solving skills.",
+            "Experience working with MongoDB.",
+            "Experience with a cloud database such as Amazon AWS or Google Cloud Platform.",
+            "Excellent customer service skills.",
+            "Self-starter with a passion for technology.",
+            "Willing to relocate."
+        ],
+        "keywords": [
+            "MongoDB",
+            "Database Administration",
+            "Java",
+            "Python",
+            "Node.js",
+            "Problem solving skills",
+            "Customer service skills",
+            "Cloud database",
+            "Amazon AWS",
+            "Google Cloud Platform"
+        ]
+    },
+    {
+        "job_id": "4",
+        "job_title": "Graphic Designer",
+        "job_company": "Cloudwave Solutions",
+        "job_description": "We're looking for a creative and talented graphics designer to help us create beautiful and user-friendly documents and interfaces for our software programs.",
+        "job_skills": [
+            "Proficient in at least one programming language (C++, Java, Python, etc.)",
+            "Strong design skills",
+            "Experience with software design or user experience",
+            "Familiarity with common graphic design software (Adobe Photoshop, Inkscape, GIMP, etc.)"
+        ],
+        "keywords": [
+            "Graphic design",
+            "Software design",
+            "User experience",
+            "Adobe Photoshop",
+            "Inkscape",
+            "GIMP",
+            "C++",
+            "Java",
+            "Python"
+        ]
+    },
+    {
+        "job_id": "5",
+        "job_title": "Web Developer",
+        "job_company": "WhiteWave Systems",
+        "job_description": "At WhiteWave Systems, we are looking for a web developer who is skilled in all programming languages. The ideal candidate will have experience with HTML, CSS, JavaScript, and jQuery. They will be responsible for creating and maintaining websites and programming applications.",
+        "job_skills": [
+            "As a web developer at WhiteWave Systems, you will be part of a team that is responsible for developing and updating our website and client software. The position is full-time and requires a degree in computer science or related field. If you are interested in this opportunity, please send your resume and cover letter to us and we will contact you to discuss further."
+        ],
+        "keywords": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "jQuery",
+            "Web development",
+            "Software development",
+            "Computer science",
+            "Cover letter",
+            "Resume"
+        ]
+    },
+    {
+        "job_id": "6",
+        "job_title": "Cyber Security Analyst",
+        "job_company": "TechNova",
+        "job_description": "The cyber security analyst will be responsible for performing comprehensive analysis and research on malicious software and cyber attacks, developing solutions to secure systems, and advising management on cyber security matters",
+        "job_skills": [
+            "Experience working with various programming languages",
+            "Strong knowledge of security concepts",
+            "Good problem solving skills",
+            "Excellent written and oral communication skills",
+            "Perform penetration tests and vulnerability scans on company networks",
+            "Trace and analyze intrusion incidents",
+            "Develop and implement countermeasures to protect company systems"
+        ],
+        "keywords": [
+            "Cyber security",
+            "Malicious software",
+            "Cyber attacks",
+            "Programming languages",
+            "Security concepts",
+            "Problem solving skills",
+            "Communication skills",
+            "Penetration tests",
+            "Vulnerability scans",
+            "Intrusion incidents",
+            "Countermeasures"
+        ]
+    },
+    {
+        "job_id": "7",
+        "job_title": "System Administrator - Linux",
+        "job_company": "Symantec",
+        "job_description": "The Linux System Administrator is responsible for the overall administration and maintenance of a Linux network and its underlying systems. Requirements for the position include knowledge of the Linux operating system, networking, troubleshooting, and system configuration. The individual should also be able to handle projects independently, and have excellent communication and problem-solving skills",
+        "job_skills": [
+            "- Proficient in a programming language, such as C, Bash, or Python",
+            "- Excellent problem solving skills",
+            "- Strong working knowledge of Linux operating system",
+            "- Experience with network administration and security",
+            "- Expertise in trouble shooting and resolving system issues",
+            "- Ability to work independently"
+        ],
+        "keywords": [
+            "Linux",
+            "System administration",
+            "Network administration",
+            "Security",
+            "Troubleshooting",
+            "System issues",
+            "C",
+            "Bash",
+            "Python",
+            "Problem solving skills"
+        ]
+    },
+    {
+        "job_id": "8",
+        "job_title": "DevOps Engineer",
+        "job_company": "Dell",
+        "job_description": "Are you a skilled developer with experience in a number of programming languages? If so, we would like to offer you a position as a DevOps Engineer. This is a role that requires experience working with a variety of programming languages, as well as knowledge of distributed systems and deployment tools.",
+        "job_skills": [
+            "Good programming skills in one or more programming languages",
+            "Experience with DevOps principles and practices",
+            "Experience with automation tools (e.g., Puppet, Chef, Ansible)",
+            "Experience with code quality tools (e.g., SonarQube, Apache JIRA)"
+        ],
+        "keywords": [
+            "DevOps",
+            "Programming languages",
+            "Distributed systems",
+            "Deployment tools",
+            "Automation tools",
+            "Code quality tools",
+            "Puppet",
+            "Chef",
+            "Ansible",
+            "SonarQube",
+            "Apache JIRA"
+        ]
+    }]
+}
