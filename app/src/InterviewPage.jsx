@@ -97,7 +97,7 @@ export default function InterviewPage() {
                     AI Interview for {job} at {company}
                 </Typography>
                 <Bot steps={finalScript}/>
-                <Link to="/interview"><Button>End Interview</Button></Link>
+                <Link to="/"><Button>End Interview</Button></Link>
             </div>
         )
     }
