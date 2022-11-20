@@ -111,7 +111,7 @@ export default function InterviewPage() {
     if(data.length != 0 && finalScript.length != 0) {
         return (
             <div>
-                <Typography variant="h4" style={{ textAlign: 'center' }}>
+                <Typography variant="h4" style={{ textAlign: 'center', paddingTop: '1.0vh'}}>
                     AI Interview for {job} at {company}
                 </Typography>
                 <Bot steps={finalScript}/><br />
