@@ -1,6 +1,8 @@
 from flask import Flask, render_template, redirect, request, url_for, json
 import openai
 from flask_cors import CORS
+import spacy
+nlp = spacy.load("en_core_web_sm")
 # import os
 from pathlib import Path
 
@@ -42,16 +44,20 @@ def selected_job():
 @app.route('/generate_response', methods=['GET'])
 def generate_response():
     global job_profile
-    job_id = job_profile['job_id']
     job_title = job_profile['job_title']
     job_company = job_profile['job_company']
-    job_description = job_profile['job_description']
-    job_skills = job_profile['job_skills']
+
+    keywords = job_profile['keywords']
+    # make keywords into a comma separated string
+    keywords = ", ".join(keywords)
     
+    mainPrompt = f"Using the keywords {keywords} create a list of 8 questions that would be asked to a software engineer during a job interview and format it as a Python list:"
+    workWithUsPrompt = f"9. Why should we hire you for the {job_title} position at {job_company}?"
+    whyCompanyPrompt = f"10. Why do you want to work at {job_company}?"
     
     response = openai.Completion.create(
       model="text-curie-001",
-      prompt="Create a list of 8 questions for my interview with a C++ software engineer and format it as a Python list:",
+      prompt=mainPrompt,
       temperature=0.9,
       max_tokens=150,
       top_p=1,
@@ -60,19 +66,13 @@ def generate_response():
       stop=[" Human:", " AI:"]
     )
     response_str = response['choices'][0]['text']
-    # remove  1., 2., 3., 4., 5., 6., 7., 8. from response
-    # response_str = response_str.replace('1.', '').replace('2.', '').replace('3.', '').replace('4.', '').replace('5.', '').replace('6.', '').replace('7.', '').replace('8.', '')
     response_ls = response_str.splitlines()
     response_ls = [x.strip() for x in response_ls]
-    print(f"\n\nresponse_ls: {response_ls}")
-    # replace all single quotes with double quotes
     response_ls = [x.replace("'", '"') for x in response_ls]
-    # print(f"response_ls: {response_ls[3]}")
-    
-    # return render_template('index.html', response=response_ls)
-    # delete any null or empty strings
     response_ls = [x for x in response_ls if x]
     print('\n\n')
+    response_ls.append(workWithUsPrompt)
+    response_ls.append(whyCompanyPrompt)
     for response in response_ls:
         print(f"response: {response}")
     return response_ls
