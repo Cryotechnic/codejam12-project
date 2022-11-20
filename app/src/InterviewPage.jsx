@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Bot from './Bot'
 import { useLocation } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import {Link} from 'react-router-dom';
 
 // async function to post candidate id to backend at /selected_candidate
 async function postCandidateId(id) {
@@ -28,9 +30,6 @@ async function getResData() {
   return data;
 }
 
-
-
-
 export default function InterviewPage() {
     const location = useLocation();
     const id = location.state.id;
@@ -54,49 +53,51 @@ export default function InterviewPage() {
 
     // compile response data into steps for chatbot
     let finalScript = [];
-    let i = 0;
-    data.forEach((elem) => {
-        // if at end of data, add end step
-        if (i == data.length - 1) {
-            finalScript.push({
-                id: i.toString(),
-                message: elem,
-                trigger: (i + 1).toString(),
-            })
-            finalScript.push({
-                id: (i + 1).toString(),
-                user: true,
-                trigger: (i + 2).toString(),
-            })
-            finalScript.push({
-                id: (i + 2).toString(),
-                message: "Thank you for your time! Your interview is now complete.",
-                end: true
-            })
+    let ctr = 0;
+    for (let i = 0; i < data.length*2 - 1; i++) {
+        if (i % 2 == 0) {
+            finalScript.push(
+                {
+                    id: i.toString(),
+                    message: data[ctr],
+                    trigger: (i+1).toString(),
+                }
+            )
         } else {
-            // add step for message and step for user input
-            finalScript.push({
-                id: i.toString(),
-                message: elem,
-                trigger: (i + 1).toString()
-            })
-            finalScript.push({
-                id: (i + 1).toString(),
-                user: true,
-                trigger: (i + 2).toString()
-            })
+            finalScript.push(
+                {
+                    id: i.toString(),
+                    user: true,
+                    trigger: (i+1).toString(),
+                }
+            )
+            ctr++;
         }
-        ++i;
-    })
+    }
+    finalScript.push(
+        {
+            id: (data.length*2-1).toString(),
+            user: true,
+            trigger: (data.length*2).toString(),
+        }
+    )
+    finalScript.push(
+        {
+            id: (data.length*2).toString(),
+            message: "Thank you for your time!",
+            end: true,
+        }
+    )
     console.log(finalScript);
     // only render chatbot once data is received
     if(data.length != 0 && finalScript.length != 0) {
         return (
             <div>
-                <Typography variant="h6" style={{ textAlign: 'center' }}>
-                    <h1>AI Interview for {job} at {company}</h1>
+                <Typography variant="h3" style={{ textAlign: 'center' }}>
+                    <h3>AI Interview for {job} at {company}</h3>
                 </Typography>
                 <Bot steps={finalScript}/>
+                <Link to="/interview"><Button>End Interview</Button></Link>
             </div>
         )
     }
