@@ -10,6 +10,59 @@ openai.api_key = "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"
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/analysis", methods=["POST"])
+def analysis():
+    global job_profile
+    job_title = job_profile['job_title']
+
+    data = request.get_json()
+    steps = data["steps"]
+    values = data["values"]
+    # only the message of each even numbered step is to be appended to a list called questions
+    questions = []
+    for i in range(0, len(steps), 2):
+        questions.append(steps[i]["message"])
+    
+    prompts = []
+    for x in questions:
+        prompts.append(f"What would an ideal candidate for a position as a {job_title} say in response to the following question: {x}?")
+    
+    # Analyze the natural language of the values and determine if it was a clear response or not
+    # If it was not a clear response, then append the question to a list called unclear_questions
+    unclear_questions = []
+    for i in range(len(values)):
+        doc = nlp(values[i])
+        if doc._.is_ambiguous:
+            unclear_questions.append(prompts[i])
+    
+    # If it was a clear response, then append the question to a list called clear_questions
+    clear_questions = []
+    for i in range(len(values)):
+        doc = nlp(values[i])
+        if not doc._.is_ambiguous:
+            clear_questions.append(prompts[i])
+
+    # Calculate the percentage of clear responses
+    percentage = round((len(clear_questions) / len(prompts)) * 100, 2)
+    print(percentage)
+
+    # [print(p) for p in prompts]
+    # proposed_answers = []
+    # for p in prompts:
+    #     response = openai.Completion.create(
+    #         engine="text-curie-001",
+    #         prompt=p,
+    #         temperature=0.9,
+    #         max_tokens=100,
+    #         top_p=1,
+    #         frequency_penalty=0,
+    #         presence_penalty=0.6,
+    #         stop=["\n", " Human:", " AI:"]
+    #     )
+    #     proposed_answers.append(response["choices"][0]["text"])
+    
+    # [print(a) for a in proposed_answers]
+    return json.dumps({"success": True}), 200, {"ContentType": "application/json"}
 
 def local_job_data():
     SITE_ROOT = Path("./templates/data.json")
