@@ -115,7 +115,7 @@ export default function InterviewPage() {
                     AI Interview for {job} at {company}
                 </Typography>
                 <Bot steps={finalScript}/><br />
-                <Button variant="contained" style={{ float: 'right', marginRight: '5vw'}} onClick={event => {
+                <Button variant="contained" style={{ float: 'right', background:'#6e48aa', marginRight: '5vw' }} onClick={event => {
                     handleOpen()
                     }}>End Interview</Button>
                     <Modal
@@ -126,7 +126,7 @@ export default function InterviewPage() {
                     >
                       <Box sx={style}>
                         <Typography variant="h5">
-                            You are ending the interview!
+                            <b>You are ending the interview! </b>
                         </Typography>
                         <Typography variant="h6">
                             Should you exit, the data you entered <Typography variant="h6" sx={{ textDecoration: 'underline' }}>WILL NOT</Typography> be saved.
