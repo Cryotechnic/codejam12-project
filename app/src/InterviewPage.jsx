@@ -94,7 +94,7 @@ export default function InterviewPage() {
         return (
             <div>
                 <Typography variant="h3" style={{ textAlign: 'center' }}>
-                    <h3>AI Interview for {job} at {company}</h3>
+                    AI Interview for {job} at {company}
                 </Typography>
                 <Bot steps={finalScript}/>
                 <Link to="/interview"><Button>End Interview</Button></Link>
