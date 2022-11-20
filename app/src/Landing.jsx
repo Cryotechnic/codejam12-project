@@ -8,7 +8,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import {Link} from 'react-router-dom';
-import JobModel from './JobModel';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
@@ -91,7 +90,7 @@ export default function Landing() {
 
     return (
       <div>
-        <h1 style={{textAlign: "center"}}>JobSmart</h1>
+        <h1 style={{textAlign: "center", paddingTop: '1.0vh', paddingBottom: '1.0vh'}}>JobSmart</h1>
         <TableContainer sx={{mx:'auto', width: '52%'}} component={Paper} style={{borderRadius: 12.5}}>
           <Table sx={{minWidth: 650, width: '100%'}} size="small" aria-label="simple table">
             <TableHead>
