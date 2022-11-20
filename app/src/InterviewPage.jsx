@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Bot from './Bot'
 import { useLocation } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 
 // async function to post candidate id to backend at /selected_candidate
 async function postCandidateId(id) {
@@ -26,6 +27,7 @@ async function getResData() {
   const data = await response.json();
   return data;
 }
+
 
 
 
@@ -91,7 +93,9 @@ export default function InterviewPage() {
     if(data.length != 0 && finalScript.length != 0) {
         return (
             <div>
-                <h1>Interview with {company} for the {job} position</h1>
+                <Typography variant="h6" style={{ textAlign: 'center' }}>
+                    <h1>AI Interview for {job} at {company}</h1>
+                </Typography>
                 <Bot steps={finalScript}/>
             </div>
         )

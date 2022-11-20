@@ -9,6 +9,12 @@ app = Flask(__name__)
 CORS(app)
 
 job_profile = {}
+def local_job_data():
+    SITE_ROOT = Path("./templates/data.json")
+    data = json.load(open(SITE_ROOT))
+    return data
+
+data = local_job_data()
 
 @app.route('/')
 def index():
@@ -64,6 +70,4 @@ def generate_response():
 
 @app.route('/job_data', methods=['GET'])
 def get_job_data():
-    SITE_ROOT = Path("./templates/data.json")
-    data = json.load(open(SITE_ROOT))
     return data
