@@ -22,17 +22,7 @@ async function getJobData() {
   return data;
 }
 
-const genResLink = 'http://localhost:5000/generate_response';
-async function getResData() {
-  const response = await fetch(genResLink, {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-  })
-  const data = await response.json();
-  return data;
-}
+
 
 export default function Landing() {
 
@@ -44,7 +34,7 @@ export default function Landing() {
   }
 
     const [items, setItems] = useState([])
-    const [resItems, setResItems] = useState([])
+    
 
   useEffect(() => {
     // React advises to declare the async function directly inside useEffect
@@ -61,20 +51,7 @@ export default function Landing() {
     }
   }, []);
 
-    useEffect(() => {
-        // React advises to declare the async function directly inside useEffect
-        async function getToken() {
-            const data = await getResData()
-            console.log(data)
-            setResItems(data);
-        };
-
-        // You need to restrict it at some point
-        // This is just dummy code and should be replaced by actual
-        if (resItems.length == 0) {
-            getToken();
-        }
-    }, []);
+    
 
   function createData(id, title, company) {
     return { id, title, company };
@@ -131,7 +108,6 @@ export default function Landing() {
                             id: row.id,
                             job: row.title,
                             company: row.company,
-                            data: resItems
                         }} ><Button variant="contained">Apply</Button>
                         </Link>
                     </TableCell>

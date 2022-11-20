@@ -1,6 +1,32 @@
-import React, {useState} from 'react';
-import ChatBot from 'react-simple-chatbot'
+import React, {useEffect, useState} from 'react';
+import Bot from './Bot'
 import { useLocation } from 'react-router-dom';
+
+// async function to post candidate id to backend at /selected_candidate
+async function postCandidateId(id) {
+    const response = await fetch('http://localhost:5000/selected_job', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({id: id}),
+    })
+    const data = await response.json();
+    return data;
+}
+
+const genResLink = 'http://localhost:5000/generate_response';
+async function getResData() {
+  const response = await fetch(genResLink, {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+  })
+  const data = await response.json();
+  return data;
+}
+
 
 
 export default function InterviewPage() {
@@ -8,58 +34,74 @@ export default function InterviewPage() {
     const id = location.state.id;
     const job = location.state.job;
     const company = location.state.company;
-    const data = location.state.data;
-    
-    function handleEnd({ steps, values }) {
-        console.log(values);
-    }
-
-    const conSteps = [];
-    let ctr = 0;
-
-    console.log(data);
-    // construct the steps by iterating through the data, and adding the questions, and every second question, the answer
-    for (let i = 0; i < data.length; i++) {
-        //if we are at the last question, we need to add the end step
-        if (i === data.length - 1) {
-            conSteps.push({
-                id: ctr.toString(),
-                message: 'Thanks! Your answers have been submitted.',
-                end: true,
-            });
+    const [data, setData] = useState([])
+    // before rendering, post candidate id to backend and get response data, do not render until data is received, do not get response data until candidate id is posted
+    useEffect(() => {
+        postCandidateId(id).then(() => {
+            console.log("posted candidate id: " + id);
+            async function getToken() {
+                const data = await getResData()
+                console.log(data)
+                setData(data);
+            };
+            if (data.length == 0) {
+                getToken();
+            }
         }
-        //if we are at a question, we need to add the question and the answer
-        else {
-            conSteps.push({
-                id: ctr.toString(),
-                message: data[i],
-                trigger: (ctr + 1).toString(),
-            });
-            ctr++;
-            conSteps.push({
-                id: ctr.toString(),
+    )}, []);
+
+    // compile response data into steps for chatbot
+    let finalScript = [];
+    let i = 0;
+    data.forEach((elem) => {
+        // if at end of data, add end step
+        if (i == data.length - 1) {
+            finalScript.push({
+                id: i.toString(),
+                message: elem,
+                trigger: (i + 1).toString(),
+            })
+            finalScript.push({
+                id: (i + 1).toString(),
                 user: true,
-                trigger: (ctr + 1).toString(),
-            });
-            ctr++;
+                trigger: (i + 2).toString(),
+            })
+            finalScript.push({
+                id: (i + 2).toString(),
+                message: "Thank you for your time! Your interview is now complete.",
+                end: true
+            })
+        } else {
+            // add step for message and step for user input
+            finalScript.push({
+                id: i.toString(),
+                message: elem,
+                trigger: (i + 1).toString()
+            })
+            finalScript.push({
+                id: (i + 1).toString(),
+                user: true,
+                trigger: (i + 2).toString()
+            })
         }
+        ++i;
+    })
+    console.log(finalScript);
+    // only render chatbot once data is received
+    if(data.length != 0 && finalScript.length != 0) {
+        return (
+            <div>
+                <h1>Interview with {company} for the {job} position</h1>
+                <Bot steps={finalScript}/>
+            </div>
+        )
+    }
+    else {
+        return (
+            <div>
+                <h1>Loading...</h1>
+            </div>
+        )
     }
 
-    conSteps.map((e) => console.log(e));
-
-
-
-    return (
-        <div>
-
-            <h1>Interview Page {id} for {job} at {company}</h1>
-
-            <ChatBot
-                handleEnd={handleEnd}
-                steps={conSteps}
-                style={{ width: '90vw', height: 'auto', marginLeft: '5vw', marginTop: '5vh' }}
-            />
-
-        </div>
-    );
 }
