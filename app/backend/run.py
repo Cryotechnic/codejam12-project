@@ -8,7 +8,7 @@ openai.api_key = "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"
 app = Flask(__name__)
 CORS(app)
 
-job_profile = {}
+
 def local_job_data():
     SITE_ROOT = Path("./templates/data.json")
     data = json.load(open(SITE_ROOT))
@@ -20,6 +20,7 @@ data = local_job_data()
 def index():
     return "Hello World"
 
+
 @app.route('/selected_job', methods=['POST'])
 def selected_job():
     id = request.get_json()['id']
@@ -29,6 +30,7 @@ def selected_job():
 
     for job in jobs:
         if job['job_id'] == id:
+            global job_profile
             job_profile = job
             break
     
@@ -39,6 +41,13 @@ def selected_job():
 
 @app.route('/generate_response', methods=['GET'])
 def generate_response():
+    global job_profile
+    job_id = job_profile['job_id']
+    job_title = job_profile['job_title']
+    job_company = job_profile['job_company']
+    job_description = job_profile['job_description']
+    job_skills = job_profile['job_skills']
+    
     
     response = openai.Completion.create(
       model="text-curie-001",
@@ -52,7 +61,7 @@ def generate_response():
     )
     response_str = response['choices'][0]['text']
     # remove  1., 2., 3., 4., 5., 6., 7., 8. from response
-    response_str = response_str.replace('1.', '').replace('2.', '').replace('3.', '').replace('4.', '').replace('5.', '').replace('6.', '').replace('7.', '').replace('8.', '')
+    # response_str = response_str.replace('1.', '').replace('2.', '').replace('3.', '').replace('4.', '').replace('5.', '').replace('6.', '').replace('7.', '').replace('8.', '')
     response_ls = response_str.splitlines()
     response_ls = [x.strip() for x in response_ls]
     print(f"\n\nresponse_ls: {response_ls}")
