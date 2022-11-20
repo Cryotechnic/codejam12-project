@@ -6,7 +6,7 @@ nlp = spacy.load("en_core_web_sm")
 # import os
 from pathlib import Path
 
-openai.api_key = "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"
+openai.api_key = "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"
 app = Flask(__name__)
 CORS(app)
 
