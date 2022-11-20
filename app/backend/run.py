@@ -3,10 +3,12 @@ import openai
 from flask_cors import CORS
 import spacy
 nlp = spacy.load("en_core_web_sm")
-# import os
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
-openai.api_key = "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"
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 app = Flask(__name__)
 CORS(app)
 
