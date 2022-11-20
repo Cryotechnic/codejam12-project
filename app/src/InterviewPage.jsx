@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import {Link} from 'react-router-dom';
+import { CirclesWithBar } from 'react-loader-spinner';
 
 // async function to post candidate id to backend at /selected_candidate
 async function postCandidateId(id) {
@@ -143,7 +144,19 @@ export default function InterviewPage() {
     else {
         return (
             <div>
-                <h1>Loading...</h1>
+                {/* <h1>Loading...</h1> */}
+                <CirclesWithBar
+                    height="100"
+                    width="100"
+                    color={'#7F00FF'}
+                    wrapperStyle={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}
+                    wrapperClass=""
+                    visible={true}
+                    outerCircleColor=""
+                    innerCircleColor=""
+                    barColor=""
+                    ariaLabel='circles-with-bar-loading'
+                />
             </div>
         )
     }
